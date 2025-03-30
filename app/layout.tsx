@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "./providers";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -47,17 +48,19 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={cn("font-sans antialiased", fontSans.variable)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
-        </ThemeProvider>
+        <Providers>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+            <Footer />
+            <Toaster />
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
